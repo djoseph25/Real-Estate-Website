@@ -1,0 +1,67 @@
+<%- include ('partials/navbar')  %> 
+  <!--/ Intro Single star /-->
+  <header class="blogs">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Our Blog</h1>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="property-grid.html">Properties</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <a href="/blog/new">Create Blog</a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header> 
+  <!--/ Intro Single End /-->
+
+  <!--/ News Grid Star /-->
+  <section class="news-grid">
+    <div class="container">
+      <div class="row">
+<% Blog.forEach(blog => { %>
+        <div class="col-md-4 mt-4">
+          <div class="card-box-b card-shadow news-box">
+            <div class="img-box-b">
+              <img src="<%= blog.image %> " alt="" class="img-b img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-header-b">
+                <div class="card-category-b">
+                  <a href="#" class="category-b">Travel</a>
+                </div>
+                <div class="card-title-b">
+                  <h2 class="title-2">
+                    <a href="/blog/<%=blog._id%> ">Travel is comming
+                      <br> new</a>
+                  </h2>
+                </div>
+                <div class="card-date">
+                  <span class="date-b">18 Sep. 2017</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+
+        <% }) %>
+      </div>
+    </div>
+   
+  </section>
+  <!--/ News Grid End /-->
+
+  <%- include ('partials/footer')  %> 

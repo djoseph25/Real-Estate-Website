@@ -1,0 +1,144 @@
+<!-- HEADER NAVBAR -->
+<%- include ('partials/navbar')  %> 
+
+
+  <!--/ Carousel Star /-->
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100 bg-image" src="https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100 bg-image" src="https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100 bg-image" src="https://images.pexels.com/photos/5997993/pexels-photo-5997993.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Third slide">
+      </div>
+    </div>
+  </div>
+  <!--/ Carousel end /-->
+   <!--/ Intro Single star /-->
+   <header class='header'>
+    <div class="container">
+      <div class='title-border'>
+        <h1 class='proper'>Our Properties</h1>
+      </div>
+    </div>
+  </header>
+  <!--/ Intro Single End /-->
+   <!--/ Property Star /-->
+   <section class="property-grid grid">
+    <div class="container">
+      <div class="row">
+       
+        <div class="col-sm-12">
+          <div class="grid-option">
+            <form>
+              <select class="custom-select">
+                <option selected>All</option>
+                <option value="1">New to Old</option>
+                <option value="2">For Rent</option>
+                <option value="3">For Sale</option>
+              </select>
+            </form>
+          </div>
+        </div>
+        <% listing.forEach(listing => { %>
+        <div class="col-md-4">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="<%= listing.image %> " alt="" class="img-b img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="#">204 Mount
+                      <br /> <%= listing.location %></a>
+                  </h2>
+                </div>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a"><%= listing.status %> | $ <%= listing.price %></span>
+                  </div>
+                  <a href="/listing/<%= listing._id %> " class="link-a">Click here to view
+                    <span class="ion-ios-arrow-forward"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span><%= listing.area %>
+                        <sup>sqf</sup>
+                      </span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Beds</h4>
+                      <span><%= listing.bedroom %></span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Baths</h4>
+                      <span><%= listing.bathroom %></span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Garages</h4>
+                      <span><%= listing.garage %> </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+  </section>
+  <!--/ Property End /-->
+  
+  <!--/ News Star /-->
+  <!--/ Intro Single star /-->
+  <header class='header'>
+    <div class="container">
+      <div class='title-border'>
+        <h1 class='proper'>Our Blogs</h1>
+      </div>
+    </div>
+  </header>
+  <!--/ Intro Single End /-->
+
+  <!--/ News Grid Star /-->
+  <section class="news-grid grid">
+    <div class="container">
+      <div class="row">
+<% Blog.forEach(blog => { %>
+        <div class="col-md-4">
+          <div class="card-box-b card-shadow news-box">
+            <div class="img-box-b">
+              <img src="<%= blog.image %> " alt="" class="img-b img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-header-b">
+                <div class="card-category-b">
+                  <a href="#" class="category-b">Travel</a>
+                </div>
+                <div class="card-title-b">
+                  <h2 class="title-2">
+                    <a href="/blog/<%=blog._id%> ">Travel is comming
+                      <br> new</a>
+                  </h2>
+                </div>
+                <div class="card-date">
+                  <span class="date-b">18 Sep. 2017</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+
+        <% }) %>
+      </div>
+    </div>
+   
+  </section>
+  <!--/ News End /-->
+  <%- include ('partials/footer')  %> 
