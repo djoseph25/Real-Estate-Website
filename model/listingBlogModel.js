@@ -41,17 +41,7 @@ const ListingSchema = new mongoose.Schema({
     description:{
         type: String
     },
-    // status: String,
-    // image: String,
-    // location: String,
-    // price: Number,
-    // property: String,
-    // bedroom: String,
-    // bathroom: String,
-    // garage:String,
-    // area:Number,
-    // description: String,
-    })
+       })
 
 const BlogSchema = new mongoose.Schema({
     author:{

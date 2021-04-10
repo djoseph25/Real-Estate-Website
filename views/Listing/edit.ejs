@@ -4,9 +4,505 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
+<style>
+body {
+  background-color: #ffffff;
+  color: #444444;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+.wizard-content-left {
+  background-blend-mode: darken;
+  background-color: rgba(0, 0, 0, 0.45);
+  background-image: url("https://images.unsplash.com/photo-1489370321024-e0410ad08da4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80");
+  background-position: center center;
+  background-size: cover;
+  height: 100vh;
+  padding: 30px;
+}
+.wizard-content-left h1 {
+  color: #ffffff;
+  font-size: 38px;
+  font-weight: 600;
+  padding: 12px 20px;
+  text-align: center;
+}
+
+.form-wizard {
+  color: #888888;
+  padding: 30px;
+}
+.form-wizard .wizard-form-radio {
+  display: inline-block;
+  margin-left: 5px;
+  position: relative;
+}
+.form-wizard .wizard-form-radio input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  background-color: #dddddd;
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+.form-wizard .wizard-form-radio input[type="radio"]:focus {
+  outline: 0;
+}
+.form-wizard .wizard-form-radio input[type="radio"]:checked {
+  background-color: #032081;
+}
+.form-wizard .wizard-form-radio input[type="radio"]:checked::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 50%;
+  left: 1px;
+  right: 0;
+  margin: 0 auto;
+  top: 8px;
+}
+.form-wizard .wizard-form-radio input[type="radio"]:checked::after {
+  content: "";
+  display: inline-block;
+  webkit-animation: click-radio-wave 0.65s;
+  -moz-animation: click-radio-wave 0.65s;
+  animation: click-radio-wave 0.65s;
+  background: #000000;
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+  border-radius: 50%;
+}
+.form-wizard .wizard-form-radio input[type="radio"] ~ label {
+  padding-left: 10px;
+  cursor: pointer;
+}
+.form-wizard .form-wizard-header {
+  text-align: center;
+}
+.form-wizard .form-wizard-next-btn, .form-wizard .form-wizard-previous-btn, .form-wizard .form-wizard-submit {
+  background-color: #022c44;
+  color: #ffffff;
+  display: inline-block;
+  min-width: 100px;
+  min-width: 120px;
+  padding: 10px;
+  text-align: center;
+}
+.form-wizard .form-wizard-next-btn:hover, .form-wizard .form-wizard-next-btn:focus, .form-wizard .form-wizard-previous-btn:hover, .form-wizard .form-wizard-previous-btn:focus, .form-wizard .form-wizard-submit:hover, .form-wizard .form-wizard-submit:focus {
+  color: #ffffff;
+  opacity: 0.6;
+  text-decoration: none;
+}
+.form-wizard .wizard-fieldset {
+  display: none;
+}
+.form-wizard .wizard-fieldset.show {
+  display: block;
+}
+.form-wizard .wizard-form-error {
+  display: none;
+  background-color: #d70b0b;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+}
+.form-wizard .form-wizard-previous-btn {
+  background-color: #002f64;
+}
+.form-wizard .form-control {
+  font-weight: 300;
+  height: auto !important;
+  padding: 15px;
+  color: #2c2c2c;
+  background-color: #f1f1f1;
+  border: none;
+}
+.form-wizard .form-control:focus {
+  box-shadow: none;
+}
+.form-wizard .form-group {
+  position: relative;
+  margin: 25px 0;
+}
+.form-wizard .wizard-form-text-label {
+  position: absolute;
+  left: 10px;
+  top: 16px;
+  transition: 0.2s linear all;
+}
+.form-wizard .focus-input .wizard-form-text-label {
+  color: #c70505;
+  top: -18px;
+  transition: 0.2s linear all;
+  font-size: 12px;
+}
+.form-wizard .form-wizard-steps {
+  margin: 30px 0;
+}
+.form-wizard .form-wizard-steps li {
+  width: 25%;
+  float: left;
+  position: relative;
+}
+.form-wizard .form-wizard-steps li::after {
+  background-color: #f3f3f3;
+  content: "";
+  height: 5px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  border-bottom: 1px solid #dddddd;
+  border-top: 1px solid #dddddd;
+}
+.form-wizard .form-wizard-steps li span {
+  background-color: #dddddd;
+  border-radius: 50%;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+  text-align: center;
+  width: 40px;
+  z-index: 1;
+}
+.form-wizard .form-wizard-steps li:last-child::after {
+  width: 50%;
+}
+.form-wizard .form-wizard-steps li.active span, .form-wizard .form-wizard-steps li.activated span {
+  background-color: #0d3b66;
+  color: #ffffff;
+}
+.form-wizard .form-wizard-steps li.active::after, .form-wizard .form-wizard-steps li.activated::after {
+  background-color: #549cd6;
+  left: 50%;
+  width: 50%;
+  border-color: #d65470;
+}
+.form-wizard .form-wizard-steps li.activated::after {
+  width: 100%;
+  border-color: #d65470;
+}
+.form-wizard .form-wizard-steps li:last-child::after {
+  left: 0;
+}
+.form-wizard .wizard-password-eye {
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+@keyframes click-radio-wave {
+  0% {
+    width: 25px;
+    height: 25px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+    margin-left: -15px;
+    margin-top: -15px;
+    opacity: 0.0;
+  }
+}
+@media screen and (max-width: 767px) {
+  .wizard-content-left {
+    height: auto;
+  }
+}
+
+
+</style>
 <body>
-    <h1>edit</h1>
+    <section class="wizard-section">
+		<div class="row no-gutters">
+			<div class="col-lg-6 col-md-6">
+				<div class="wizard-content-left d-flex justify-content-center align-items-center">
+					<h1>Edit your listing</h1>
+                    
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6">
+				<div class="form-wizard">
+					<form action="/listing" method="post" role="form">
+						<div class="form-wizard-header">
+							<p>Fill all form field to go next step</p>
+							<ul class="list-unstyled form-wizard-steps clearfix">
+								<li class="active"><span>1</span></li>
+								<li><span>2</span></li>
+								<li><span>3</span></li>
+								<li><span>4</span></li>
+							</ul>
+						</div>
+                        	<fieldset class="wizard-fieldset show">
+							<h5>Personal Information</h5>
+							<div class="form-group">
+								<input type="text" class="form-control wizard-required" id="location" name='location' value='<%=listing.location%>'>
+								<label for="location" class="wizard-form-text-label">Location*</label>
+								<div class="wizard-form-error"></div>
+							</div>
+							<div class="form-group">
+								<select class="form-control wizard-required" id="property" name='property'>
+                                    <option value="" >Select property type...</option>
+                                    <option value="House" <%=listing.property== 'House'? 'selected': ''%>>House</option>
+                                    <option value="Condo" <%=listing.property == 'Condo'? 'selected': ''%>>Condo</option>
+                                    <option value="Townhome" <%=listing.property == 'Townhome'? 'selected': ''%>>Townhome</option>
+                                    <option value="Duplex" <%=listing.property == 'Duplex'? 'selected': ''%>>Duplex</option>
+                                </select>
+								<!-- <label for="lname" class="wizard-form-text-label">Last Name*</label> -->
+								<div class="wizard-form-error"></div>
+							</div>
+                            <div class="form-group">
+								<select class="form-control wizard-required" id="status" name='status'>
+                                    <option value="" >Select Status....</option>
+                                    <option value="Rent" <%=listing.status == 'Rent'? 'selected': ''%>>Rent</option>
+                                    <option value="Sale" <%=listing.status == 'Sale'? 'selected': ''%>>Sale</option>
+                                </select>
+								<!-- <label for="lname" class="wizard-form-text-label">Last Name*</label> -->
+								<div class="wizard-form-error"></div>
+							</div>
+							
+                            <div class="form-group clearfix">
+								<a href="javascript:;" class="form-wizard-next-btn float-right">Next</a>
+							</div>
+						</fieldset>	
+                        <!-- STEP @ 2 -->
+						<fieldset class="wizard-fieldset">
+							<h5>Account Information</h5>
+							
+							
+                            <div class="form-group">
+								<select class="form-control wizard-required" id="bedroom" name='bedroom'>
+                                    <option value="" >Select amount Bedroom...</option>
+                                    <option value="1" <%=listing.bedroom == '1'? 'selected': ''%>>1</option>
+                                    <option value="2" <%=listing.bedroom == '2'? 'selected': ''%>>2</option>
+                                    <option value="3" <%=listing.bedroom == '3'? 'selected': ''%>>3</option>
+                                    <option value="4" <%=listing.bedroom == '4'? 'selected': ''%>>4</option>
+                                    <option value="5" <%=listing.bedroom == '5'? 'selected': ''%>>5</option>
+                                    <option value="6" <%=listing.bedroom == '6'? 'selected': ''%>>6</option>
+                                    <option value="7" <%=listing.bedroom == '7'? 'selected': ''%>>7</option>
+                                </select>
+								<!-- <label for="lname" class="wizard-form-text-label">Last Name*</label> -->
+								<div class="wizard-form-error"></div>
+							</div>
+                            <div class="form-group">
+								<select class="form-control wizard-required" id="bathroom" name='bathroom'>
+                                    <option value="" >Select amount Bathroom...</option>
+                                    <option value="1" <%=listing.bathroom == '1'? 'selected': ''%>>1</option>
+                                    <option value="2" <%=listing.bathroom == '2'? 'selected': ''%>>2</option>
+                                    <option value="3" <%=listing.bathroom == '3'? 'selected': ''%>>3</option>
+                                    <option value="4" <%=listing.bathroom == '4'? 'selected': ''%>>4</option>
+                                    <option value="5" <%=listing.bathroom == '5'? 'selected': ''%>>5</option>
+                                    <option value="6" <%=listing.bathroom == '6'? 'selected': ''%>>6</option>
+                                    <option value="7" <%=listing.bathroom == '7'? 'selected': ''%>>7</option>
+                                </select>
+								<!-- <label for="lname" class="wizard-form-text-label">Last Name*</label> -->
+								<div class="wizard-form-error"></div>
+							</div>
+                            <div class="form-group">
+								<select class="form-control wizard-required" id="garage" name='garage'>
+                                    <option value="" >Select amount Garage..</option>
+                                    <option value="1" <%=listing.garage == '1'? 'selected': ''%> >1</option>
+                                    <option value="2" <%=listing.garage == '2'? 'selected': ''%>>2</option>
+                                    <option value="3" <%=listing.garage == '3'? 'selected': ''%>>3</option>
+                                    <option value="4" <%=listing.garage == '4'? 'selected': ''%>>4</option>
+                                </select>
+								<!-- <label for="lname" class="wizard-form-text-label">Last Name*</label> -->
+								<div class="wizard-form-error"></div>
+							</div>
+                            <div class="form-group clearfix">
+								<a href="javascript:;" class="form-wizard-previous-btn float-left">Previous</a>
+								<a href="javascript:;" class="form-wizard-next-btn float-right">Next</a>
+							</div>
+						
+						</fieldset>	
+                        <!-- STEP @ 3-->
+						<fieldset class="wizard-fieldset">
+							<h5>Genereal Information</h5>
+							<div class="form-group">
+								<input type="number" class="form-control wizard-required" id="area" name='area' value='<%=listing.area%>'>
+								<label for="area" class="wizard-form-text-label">SquareFeet</label>
+								<div class="wizard-form-error"></div>
+							</div>
+                            <div class="form-group">
+								<input type="number" class="form-control wizard-required" id="price" name='price' value='<%=listing.price%>'>
+								<label for="price" class="wizard-form-text-label" >price</label>
+								<div class="wizard-form-error"></div>
+							</div>
+                        
+							<div class="form-group">
+								<input type="text" class="form-control wizard-required" id="image" name='image' value='<%=listing.image%>'>
+								<label for="image" class="wizard-form-text-label">Image</label>
+								<div class="wizard-form-error"></div>
+							</div>
+						
+							<div class="form-group clearfix">
+								<a href="javascript:;" class="form-wizard-previous-btn float-left">Previous</a>
+								<a href="javascript:;" class="form-wizard-next-btn float-right">Next</a>
+							</div>
+						</fieldset>	
+                        <!--SECTION STEP @ 4 -->
+						<fieldset class="wizard-fieldset">
+							<h5>Payment Information</h5>
+							<div class="form-group">
+								Payment Type
+								<div class="wizard-form-radio">
+									<input name="radio-name" id="mastercard" type="radio">
+									<label for="mastercard">Master Card</label>
+								</div>
+								<div class="wizard-form-radio">
+									<input name="radio-name" id="visacard" type="radio">
+									<label for="visacard">Visa Card</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<textarea type="text" class="form-control wizard-required" id="description" name='description' rows="6" value='<%=listing.description%>'></textarea>
+								<label for="description" class="wizard-form-text-label">Please Add a detail description*</label>
+								<div class="wizard-form-error"></div>
+							</div>
+							
+							<div class="form-group clearfix">
+								<a href="javascript:;" class="form-wizard-previous-btn float-left">Previous</a>
+								<button href="javascript:;" class="form-wizard-submit float-right">Submit</button>
+							</div>
+						</fieldset>	
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+        <script>
+            jQuery(document).ready(function() {
+	// click on next button
+	jQuery('.form-wizard-next-btn').click(function() {
+		var parentFieldset = jQuery(this).parents('.wizard-fieldset');
+		var currentActiveStep = jQuery(this).parents('.form-wizard').find('.form-wizard-steps .active');
+		var next = jQuery(this);
+		var nextWizardStep = true;
+		parentFieldset.find('.wizard-required').each(function(){
+			var thisValue = jQuery(this).val();
+
+			if( thisValue == "") {
+				jQuery(this).siblings(".wizard-form-error").slideDown();
+				nextWizardStep = false;
+			}
+			else {
+				jQuery(this).siblings(".wizard-form-error").slideUp();
+			}
+		});
+		if( nextWizardStep) {
+			next.parents('.wizard-fieldset').removeClass("show","400");
+			currentActiveStep.removeClass('active').addClass('activated').next().addClass('active',"400");
+			next.parents('.wizard-fieldset').next('.wizard-fieldset').addClass("show","400");
+			jQuery(document).find('.wizard-fieldset').each(function(){
+				if(jQuery(this).hasClass('show')){
+					var formAtrr = jQuery(this).attr('data-tab-content');
+					jQuery(document).find('.form-wizard-steps .form-wizard-step-item').each(function(){
+						if(jQuery(this).attr('data-attr') == formAtrr){
+							jQuery(this).addClass('active');
+							var innerWidth = jQuery(this).innerWidth();
+							var position = jQuery(this).position();
+							jQuery(document).find('.form-wizard-step-move').css({"left": position.left, "width": innerWidth});
+						}else{
+							jQuery(this).removeClass('active');
+						}
+					});
+				}
+			});
+		}
+	});
+	//click on previous button
+	jQuery('.form-wizard-previous-btn').click(function() {
+		var counter = parseInt(jQuery(".wizard-counter").text());;
+		var prev =jQuery(this);
+		var currentActiveStep = jQuery(this).parents('.form-wizard').find('.form-wizard-steps .active');
+		prev.parents('.wizard-fieldset').removeClass("show","400");
+		prev.parents('.wizard-fieldset').prev('.wizard-fieldset').addClass("show","400");
+		currentActiveStep.removeClass('active').prev().removeClass('activated').addClass('active',"400");
+		jQuery(document).find('.wizard-fieldset').each(function(){
+			if(jQuery(this).hasClass('show')){
+				var formAtrr = jQuery(this).attr('data-tab-content');
+				jQuery(document).find('.form-wizard-steps .form-wizard-step-item').each(function(){
+					if(jQuery(this).attr('data-attr') == formAtrr){
+						jQuery(this).addClass('active');
+						var innerWidth = jQuery(this).innerWidth();
+						var position = jQuery(this).position();
+						jQuery(document).find('.form-wizard-step-move').css({"left": position.left, "width": innerWidth});
+					}else{
+						jQuery(this).removeClass('active');
+					}
+				});
+			}
+		});
+	});
+	//click on form submit button
+	jQuery(document).on("click",".form-wizard .form-wizard-submit" , function(){
+		var parentFieldset = jQuery(this).parents('.wizard-fieldset');
+		var currentActiveStep = jQuery(this).parents('.form-wizard').find('.form-wizard-steps .active');
+		parentFieldset.find('.wizard-required').each(function() {
+			var thisValue = jQuery(this).val();
+			if( thisValue == "" ) {
+				jQuery(this).siblings(".wizard-form-error").slideDown();
+			}
+			else {
+				jQuery(this).siblings(".wizard-form-error").slideUp();
+			}
+		});
+	});
+	// focus on input field check empty or not
+	jQuery(".form-control").on('focus', function(){
+		var tmpThis = jQuery(this).val();
+		if(tmpThis == '' ) {
+			jQuery(this).parent().addClass("focus-input");
+		}
+		else if(tmpThis !='' ){
+			jQuery(this).parent().addClass("focus-input");
+		}
+	}).on('blur', function(){
+		var tmpThis = jQuery(this).val();
+		if(tmpThis == '' ) {
+			jQuery(this).parent().removeClass("focus-input");
+			jQuery(this).siblings('.wizard-form-error').slideDown("3000");
+		}
+		else if(tmpThis !='' ){
+			jQuery(this).parent().addClass("focus-input");
+			jQuery(this).siblings('.wizard-form-error').slideUp("3000");
+		}
+	});
+});
+
+
+              </script>
+            
+  
 </body>
 </html>

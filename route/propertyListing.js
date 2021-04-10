@@ -20,7 +20,8 @@ router.post('/listing', catchAsync(async(req, res)=>{
     const listing = await listingModel(req.body)
     console.log(listing)
     listing.save()
-    res.send('send')
+    // res.send('send')
+    res.redirect(`/listing/${listing._id}`)
 }))
 
 /***  SECTION GET A SINGLE listing */
@@ -30,23 +31,23 @@ router.get('/listing/:id', catchAsync(async(req, res, next)=>{
     res.render('Listing/show', {listing})
 }))
 
-// /***  SECTION Edit listing */
-// router.get('/listing/:id/edit', catchAsync(async(req, res)=>{
-//     const listing = await listingModel.findById(req.params.id)
-//     res.render('Listing/edit', {listing})
-// }))
+/***  SECTION Edit listing */
+router.get('/listing/:id/edit', catchAsync(async(req, res)=>{
+    const listing = await listingModel.findById(req.params.id)
+    res.render('Listing/edit', {listing})
+}))
 
-// router.put('/listing/:id', catchAsync(async(req, res, next)=>{
-//     const listingUpdate = await listingModel.findByIdAndUpdate(req.params.id, req.body)
-//     listingUpdate.save()
-//     console.log(listingUpdate)
-//     res.redirect(`/Listing/${listingUpdate._id}`)
-// }))
-// /***  SECTION Delete listing */
-// router.delete('/listing/:id', catchAsync(async(req, res)=>{
-//     const listing = await listingModel.findByIdAndDelete(req.params.id)
-//     listing.save()
-//     res.redirect('/Listing')
-// }))
+router.put('/listing/:id', catchAsync(async(req, res, next)=>{
+    const listingUpdate = await listingModel.findByIdAndUpdate(req.params.id, req.body)
+    listingUpdate.save()
+    console.log(listingUpdate)
+    res.redirect(`/Listing/${listingUpdate._id}`)
+}))
+/***  SECTION Delete listing */
+router.delete('/listing/:id', catchAsync(async(req, res)=>{
+    const listing = await listingModel.findByIdAndDelete(req.params.id)
+    listing.save()
+    res.redirect('/Listing')
+}))
 
 module.exports = router;
