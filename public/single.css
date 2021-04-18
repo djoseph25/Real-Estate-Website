@@ -2395,3 +2395,26 @@ background-color: rgb(224, 6, 6);
     background-position: center center;
     margin-bottom: 2rem;
   }
+/* SIGNUP SIGNOUT BUTTON */
+  .signUp-btn{
+    background-color: rgb(29, 170, 170);
+      border: none;
+      font-size: 16px;
+      color: rgb(255, 255, 255);
+      font-weight: bolder;
+      padding: 3.5px 7px;
+      border-radius: 3px;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .signOut-btn{
+      background-color: rgb(202, 9, 9);
+        border: none;
+        font-size: 16px;
+        color: rgb(255, 255, 255);
+        font-weight: bolder;
+        padding: 3.5px 7px;
+        border-radius: 3px;
+        text-align: center;
+        margin-bottom: 8px;
+      }

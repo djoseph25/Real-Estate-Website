@@ -26,7 +26,7 @@ router.post('/blog', catchAsync(async(req, res)=>{
 
 /*******SECTION GET A SINGLE BLOG */
 router.get('/blog/:id', catchAsync(async(req, res)=>{
-    const blog = await blogModel.findById(req.params.id).populate('reviews')
+    const blog = await (await blogModel.findById(req.params.id).populate('reviews')).populate('user')
     console.log(blog);
     res.render('Blog/show', {blog})
 }))

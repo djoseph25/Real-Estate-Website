@@ -40,17 +40,34 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
+    console.log(req.session)
+    res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
 })
 
 /*======================================
-//--//-->  🥛  Blog, listingRoute 🧮 
+//--//-->  🥛  Blog, listingRoute, 
+AuthenticationRoute 🧮 
 ======================================*/
 app.use( blogRoute)
 app.use( listingRoute)
 app.use(userAuthentication)
+
+/*======================================
+//--//-->  🥛  STATIC CONTACT PAGE 🧮 
+======================================*/
+app.get('/contact', (req, res, next) =>{
+    res.render('Listing/contact')
+})
+
+/*======================================
+//--//-->  🥛  STATIC ABOUT PAGE 🧮 
+======================================*/
+app.get('/about', (req, res, next) =>{
+    res.render('Listing/about')
+})
 
 app.get('/user', async(req, res)=>{
     const user =  new User({email: 'dave@me.com', username: 'dave90'})

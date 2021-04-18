@@ -37,14 +37,15 @@ const seed = async () => {
         max: 3500
       }),
       property: 'House',
-      status: 'Sale',  
-        });
+      status: 'Sale', 
+       user:'607ca96f674ac53518ff81fe'
+        });  
     }
   await blogModel.deleteMany({})
     for (let i = 0; i < 6; i++) {
         await blogModel.create({
            author: faker.name.findName(),
-      // title: `${sample(blogTitle)}`,
+           user:'607ca96f674ac53518ff81fe',
       title: faker.lorem.sentence(4),
       category: 'Travel',
       image: faker.image.city(),

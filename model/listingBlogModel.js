@@ -41,6 +41,10 @@ const ListingSchema = new mongoose.Schema({
     description:{
         type: String
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+         ref: 'User'
+        }
        })
 
 const BlogSchema = new mongoose.Schema({
@@ -64,6 +68,10 @@ const BlogSchema = new mongoose.Schema({
     image: {
         type: String
     }, 
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+         ref: 'User'
+        },
     reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}]
 })
 
