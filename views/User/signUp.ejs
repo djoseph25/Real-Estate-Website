@@ -1,0 +1,168 @@
+<%- include ('partials/navbar')  %> 
+ <!--/ Carousel Star /-->
+
+<!--/ Carousel end /-->
+<main class="login">
+  
+	<div class="container">
+		<div class="login-container-wrapper clearfix">
+      <%if(error && error.length){%>
+        <div class="alert alert-danger text-center" role="alert">
+      <%= error %>  
+      </div>
+      <%}%> 
+			<ul class="switcher clearfix">
+				<li class="first logo active" data-tab="login">					
+						<a>Login</a>			
+				</li>
+				<li class="second logo" data-tab="sign_up">
+						<a>Sign Up</a>	
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="login">
+					<form action='login' method='POST' class="form-horizontal login-form">
+						<div class="form-group relative">
+							<input class="form-control input-lg" id="username" name='username' placeholder="Username" required="" type="text"> <i class="fa fa-user"></i>
+						</div>
+						<div class="form-group relative">
+							<input class="form-control input-lg" id="password" name='password' placeholder="Password" required="" type="text"> <i class="fa fa-lock"></i>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
+						</div>
+						<div class="checkbox checkbox-success">
+							<input id="stay-sign" type="checkbox">
+              <label for="stay-sign">Stay signed in</label>
+						</div>
+            <hr />
+						<div class="text-center">
+							<label><a href="#">Forgot your password?</a></label>
+						</div>
+					</form>
+				</div>
+				<div class="tab-pane" id="sign_up">
+					<form action='signUp'  method='POST' class="form-horizontal login-form">
+						<div class="form-group relative">
+							<input class="form-control input-lg"id="username" name='username' placeholder="Username" required="" type="text"> <i class="fa fa-user"></i>
+						</div>
+						<div class="form-group relative">
+							<input class="form-control input-lg" id="email" name='email' placeholder="email" required="" type="text"> <i class="fa fa-envelope"></i>
+						</div>
+						<div class="form-group relative">
+							<input class="form-control input-lg" id="password" name='password' placeholder="Password" required="" type="text"> <i class="fa fa-lock"></i>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-success btn-lg btn-block" type="submit">Sign Up</button>
+						</div>
+						<div class="checkbox checkbox-success">
+							<input id="agree-terms" type="checkbox">
+              <label for="agree-terms"> Agree our terms</label>
+						</div>
+						<hr>
+						<div class="text-center">
+							<label><a href="">Already Member?</a></label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+     <!-- Footer Start -->
+<footer class="footer-section">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="widget company-intro-widget">
+            <a href="index.html" class="site-logo"><img src="/img/palm.png" alt="logo"></a>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
+            <ul class="company-footer-contact-list">
+              <li><i class="fas fa-phone"></i>0123456789</li>
+              <li><i class="fas fa-clock"></i>Mon - Sat 8.00 - 18.00</li>
+            </ul>
+          </div>
+        </div><!-- widget end -->
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="widget course-links-widget">
+            <h5 class="widget-title">Popular Courses</h5>
+            <ul class="courses-link-list">
+              <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i>Academic English</a></li>
+              <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i>Web Technology</a></li>
+              <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i>PC Systems</a></li>
+              <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i>Ui Web Design</a></li>
+              <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i>Web Development</a></li>
+              <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i>Apps Development</a></li>
+            </ul>
+          </div>
+        </div><!-- widget end -->
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="widget latest-news-widget">
+            <h5 class="widget-title">lastest news</h5>
+            <ul class="small-post-list">
+              <li>
+                <div class="small-post-item">
+                  <a href="#" class="post-date">July 18, 2018</a>
+                  <h6 class="small-post-title"><a href="#">Lorem Ipsum is simply dummy text of the printing.</a></h6>
+                </div>
+              </li><!-- small-post-item end -->
+              <li>
+                <div class="small-post-item">
+                  <a href="#" class="post-date">July 28, 2018</a>
+                  <h6 class="small-post-title"><a href="#">Lorem Ipsum is simply dummy text of the printing</a></h6>
+                </div>
+              </li><!-- small-post-item end -->
+            </ul>
+          </div>
+        </div><!-- widget end -->
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="widget newsletter-widget">
+            <h5 class="widget-title">Newsletter</h5>
+            <div class="footer-newsletter">
+              <p>Sign Up to Our Newsletter to Get Latest Updates & Services</p>
+              <form class="news-letter-form">
+                <input type="email" name="news-email" id="news-email" placeholder="Your email address">
+                <input type="submit" value="Send">
+              </form>
+            </div>
+          </div>
+        </div><!-- widget end -->
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-6 col-sm-6 text-sm-left text-center">
+            <span class="copy-right-text">© 2121 <a href="/">Palmwood Realty</a> All Rights Reserved.</span>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <ul class="terms-privacy d-flex justify-content-sm-end justify-content-center">
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer-bottom end -->
+
+<!-- JavaScript Libraries -->
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/jquery/jquery-migrate.min.js"></script>
+<script src="lib/popper/popper.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/scrollreveal/scrollreveal.min.js"></script>
+<!-- Contact Form JavaScript File -->
+<script src="contactform/contactform.js"></script>
+
+<!-- Template Main Javascript File -->
+<script src="js/login.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

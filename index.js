@@ -5,51 +5,73 @@ const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const blogRoute = require('./route/blog')
 const listingRoute = require('./route/propertyListing')
-const {blogModel, listingModel} = require('./model/listingBlogModel')
-var http = require('http');
-/**
- sp-app	Create a simple express
-sp-router	Create a router to export
-sp-req	Snippet to require a module
-sp-rf	Generate a route function
-sp-ra	Generate a route arrow function
-sp-vp	Generate set view folder
-sp-ve  Generate set view engine
- */
+const userAuthentication = require('./route/userAuthentication')
+const session = require('express-session');
+const flash = require('connect-flash')
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./model/user');
 
-// app.set('port', process.env.port || 3000) 
+
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 app.use(express.static(`${__dirname}/public`))
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({extended:true}))
+app.use(session({
+    secret: 'Thisistopsecret', 
+    resave: false,
+     saveUninitialized: true, 
+     cookie:{
+         hhtpOnly: true,
+         expires: Date.now() + 604800000,
+         maxAge: 604800000
+     }
+}))
+app.use(flash())
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new LocalStrategy(User.authenticate()))
 
-app.use('/', blogRoute)
-app.use('/', listingRoute)
+//SERIALIZED mean how we get user in the session
+passport.serializeUser(User.serializeUser());
+//SERIALIZED mean how we get user out of a the session
+passport.deserializeUser(User.deserializeUser());
 
-/******SECTION HOME PAGE */
-app.get('/', async (req, res, next) =>{
-    const listing = await listingModel.find()
-    const Blog = await blogModel.find()
-    console.log(listing);
-    // console.log(blog);
-    res.render('Listing/home', {listing, Blog})
-})
-/******SECTION CONTACT PAGE */
-app.get('/contact', (req, res, next) =>{
-    res.render('Listing/contact')
-})
-app.get('/test',async (req, res, next)=>{
-    const Blog = await blogModel.find()
-    res.render('test', {Blog})
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
 })
 
-/******SECTION ABOUT PAGE */
-app.get('/about', (req, res, next) =>{
-    res.render('Listing/about')
+/*======================================
+//--//-->  🥛  Blog, listingRoute 🧮 
+======================================*/
+app.use( blogRoute)
+app.use( listingRoute)
+app.use(userAuthentication)
+
+app.get('/user', async(req, res)=>{
+    const user =  new User({email: 'dave@me.com', username: 'dave90'})
+   const newUser = await User.register(user, 'monkey')
+    res.send(newUser)
 })
 
+
+/*======================================
+//--//-->  🏌  Error Page Handler Route 💇 
+======================================*/
+app.use('*', (err, req, res,next) => {
+    res.status(404).render('Product404')
+})
+app.use('*', ( req, res) => {
+    res.status(404).render('404')
+})
+
+/*======================================
+//--//-->   Server
+======================================*/
 app.listen(3000,() =>{
     console.info(`Server listen on port 3000`);
 })

@@ -32,6 +32,9 @@
       </header> 
   <!--/ Intro Single End /-->
 
+   
+  
+
     <section class="property-single nav-arrow-b">
         <div class="container">
           <div class="row mx-auto">
@@ -44,6 +47,12 @@
                       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
+                      <%if(success && success.length){%>
+                          <div class="alert alert-success text-center" role="alert">
+                        <%= success %>  
+                       </div>
+                      <%}%>     
+                          
                       <div class="carousel-item active">
                         <img src="<%= listing.image %> " class="d-block w-100" alt="...">
                       </div>

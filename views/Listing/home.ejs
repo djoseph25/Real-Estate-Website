@@ -12,12 +12,13 @@
         <img class="d-block w-100 bg-image" src="https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Second slide">
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100 bg-image" src="https://images.pexels.com/photos/5997993/pexels-photo-5997993.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Third slide">
+        <img class="d-block w-100 bg-image" src="https://images.pexels.com/photos/5997967/pexels-photo-5997967.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Third slide">
       </div>
     </div>
   </div>
   <!--/ Carousel end /-->
    <!--/ Intro Single star /-->
+
    <header class='header'>
     <div class="container">
       <div class='title-border'>
@@ -33,13 +34,15 @@
        
         <div class="col-sm-12">
           <div class="grid-option">
-            <form>
+            <form action='/' method='GET'>
               <select class="custom-select">
                 <option selected>All</option>
                 <option value="1">New to Old</option>
-                <option value="2">For Rent</option>
+                <option value="2"> <a href="/listing/Rent=<%= listing.status %>"><%= listing.status %>For Rent</a> </option>
                 <option value="3">For Sale</option>
+                
               </select>
+             
             </form>
           </div>
         </div>

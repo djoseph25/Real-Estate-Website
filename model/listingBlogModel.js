@@ -67,6 +67,17 @@ const BlogSchema = new mongoose.Schema({
     reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}]
 })
 
+/****REVIEW DELETE ANY CORESPONDING ID  */
+BlogSchema.post('findOneAndDelete', async function(doc){
+    if(doc){
+        await Review.deleteMany({
+            _id:{
+                $in:doc.reviews
+            }
+        })
+    }
+})
+
 const listingModel = listingConnection.model('Listing', ListingSchema);
 const blogModel = blogConnection.model('Blog', BlogSchema);
 

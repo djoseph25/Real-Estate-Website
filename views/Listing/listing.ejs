@@ -14,9 +14,9 @@
           <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a class='sub-header' href="index.html">Home</a></li>
+                <a class='sub-header' href="/">Home</a></li>
               <li class="breadcrumb-item">
-                <a class='sub-header' href="property-grid.html">Properties</a>
+                <a class='sub-header' href="/listing">Properties</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
                 <a class='btn-sm btn-info' href="/listing/new">Become A Seller</a>
@@ -29,12 +29,16 @@
   </header> 
   <!--/ Intro Single End /-->
   <!--/ Intro Single End /-->
-
+  
   <!--/ Property Grid Star /-->
   <section class="property-grid grid">
     <div class="container">
+        <%if(error && error.length){%>
+          <div class="alert alert-danger text-center mt-5" role="alert">
+        <%= error %>  
+       </div>
+      <%}%> 
       <div class="row">
-       
         <div class="col-sm-12">
           <div class="grid-option">
             <form>
@@ -48,8 +52,6 @@
           </div>
         </div>
         <% listing.forEach(listing => { %>
-         
-          
         <div class="col-md-4">
           <div class="card-box-a card-shadow">
             <div class="img-box-a">

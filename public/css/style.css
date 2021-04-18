@@ -842,6 +842,9 @@ a:hover {
 .intro .carouselss-item-a.bg-image {
   background-attachment: scroll;
 }
+/* .carousel-item{
+  max-height: 80%;
+} */
 
 .intro .intro-content {
   position: absolute;
@@ -2370,3 +2373,4 @@ display: none;
  
 
 }
+
