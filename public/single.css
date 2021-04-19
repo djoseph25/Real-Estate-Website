@@ -1392,7 +1392,11 @@ a:hover {
 //--//-->   FOOTER
 ======================================*/
 .logo{
-  max-width: 200px;
+  max-width: 250px;
+  background-size: cover;
+ margin: 8px 0;
+margin-left: -30px;
+
 }
 /* section {
       padding: 60px 0;
@@ -1405,7 +1409,7 @@ a:hover {
       list-style: none;
   }
   img {
-max-width: 100%;
+max-width: 1000%;
 height: auto;
 }.footer-section {
 background-color: #233243;
@@ -1472,7 +1476,7 @@ display: inline-block;
 
 display: block;
 max-width: 200px;
-margin:-45px 0px 18px 0;
+margin:-45px 0px 188px 0;
 }
 .widget-title {
 text-transform: capitalize;
@@ -1630,7 +1634,11 @@ display: none;
 //--//-->   FOOTER
 ======================================*/
 .logo{
-  max-width: 200px;
+  max-width: 250px;
+  background-size: cover;
+ margin: 8px 0;
+margin-left: -30px;
+
 }
 section {
       padding: 60px 0;
@@ -1706,11 +1714,11 @@ font-size: 20px;
 display: inline-block;
 }
 
-.footer-top .site-logo {
 
-display: block;
-max-width: 200px;
-margin:-45px 0px 18px 0;
+.footer-top .site-logo {
+  display: block;
+  max-width: 250px;
+  margin:-15px 0px 30px -20px;
 }
 .widget-title {
 text-transform: capitalize;
