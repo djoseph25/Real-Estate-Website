@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const {listingConnection, blogConnection} = require('../connections');
-// const Review = require('./reviewModel');
+const Review = require('./reviewModel');
 
 const ListingSchema = new mongoose.Schema({
     status:{

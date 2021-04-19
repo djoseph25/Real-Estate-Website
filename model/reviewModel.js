@@ -2,13 +2,10 @@ const mongoose = require('mongoose');
 
 const reviewSchema = new mongoose.Schema({
     name:{
-        type: String
-    },
-    rating: {
-        type: Number,
-    },
-    email:{
         type: String,
+    },
+    email: {
+        type: String
     },
     createdAt:{
         type: Date,
@@ -16,7 +13,11 @@ const reviewSchema = new mongoose.Schema({
     },
     body:{
         type: String
-    }
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+         ref: 'User'
+        },
 })
 
 module.exports = mongoose.model('Review', reviewSchema)

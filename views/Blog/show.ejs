@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -55,22 +54,15 @@
            <% } else { %> 
            <a type='button' class="nav-link btn-sm btn-danger mb-2 pl-2 pr-2" href="/logout">Logout</a>
            <% } %> 
-          </div>
-       
+          </div> 
             <div class="navbar-nav">
   <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block ml-5 mb-2" data-toggle="collapse"
           data-target="#navbarTogglerDemo01" aria-expanded="false">
           <span class="fa fa-search" aria-hidden="true"></span>
-        </button>
-             
-        
+        </button>       
+      </div>      
       </div>
-        
-      </div>
-      
-  
-  
-    </nav>
+   </nav>
     <!-- Navbar End -->
    
   <!--/ Intro Single End /-->
@@ -87,10 +79,12 @@
           <span class='b-border'>
          <a href="/" class='m-1'><strong>Home</strong></a>/
          <a href="" class='m-1'><strong>Blogs</strong></a>/
+         <% if(currentUser && blog.user.equals(currentUser._id)) {%> 
          <a href="/blog/<%=blog._id %>/edit" class='m-1 btn-sm btn-info'>Edit</a>/
          <form class='d-inline' action='/blog/<%= blog._id %>?_method=DELETE' method='POST'>
            <button class='delete-btn'>Delete</button>
         </form>
+        <% } %> 
          </span>
      
         </div>
@@ -171,13 +165,14 @@
                 </div>
                 <div class="comment-details">
                   <p class="comment-author"><%= review.name %> </p>
-                  <span>Rating: <%= review.rating %> </span>
                   <p class="comment-description">
                     <%= review.body %> 
                   </p>
+                  <% if(currentUser && review.user.equals(currentUser._id)) {%> 
                   <form  action='/blog/<%= blog._id %>/reviews/<%= review._id %>?_method=DELETE' method='POST'>
-                    <button class='delete-btnd'>Delete</button>
+                    <button class='delete-btnd'> Delete</button>
                   </form>
+                  <% } %> 
                 </div> 
               </li>
             <% } %> 
@@ -185,6 +180,7 @@
             </ul>
             
           </div>
+          <% if(currentUser) {%> 
           <div class="form-comments">
             <div class="title-box-d">
               <h3 class="title-d"> Leave a Reply</h3>
@@ -206,12 +202,6 @@
                   </div>
                 </div>
                 <div class="col-md-12 mb-3">
-                  <div class="rating">
-                    <label for="inputUrl">Rating</label>
-                    <input type="range" class="form-control-range" min='1' max='5' id="rating" name='rating' placeholder="Website">
-                  </div>
-                </div>
-                <div class="col-md-12 mb-3">
                   <div class="form-group">
                     <label for="body">Enter message</label>
                     <textarea id="body" class="form-control" placeholder="Comment *" name="body" cols="45"
@@ -224,6 +214,7 @@
               </div>
             </form>
           </div>
+          <% } %> 
         </div>
       </div>
     </div>

@@ -79,9 +79,9 @@ app.get('/user', async(req, res)=>{
 /*======================================
 //--//-->  🏌  Error Page Handler Route 💇 
 ======================================*/
-app.use('*', (err, req, res,next) => {
-    res.status(404).render('Product404')
-})
+// app.use('*', (err, req, res,next) => {
+//     res.status(404).render('Product404')
+// })
 app.use('*', ( req, res) => {
     res.status(404).render('404')
 })
