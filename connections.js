@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-function makeNewConnection(uri) {
-       mongoose.connect(uri, {
+function makeNewConnection(data) {
+       mongoose.connect(data, {
         useNewUrlParser: true,
         useCreateIndex:true,
         useUnifiedTopology: true,

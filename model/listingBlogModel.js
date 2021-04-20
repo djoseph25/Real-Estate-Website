@@ -7,9 +7,12 @@ const ListingSchema = new mongoose.Schema({
         type: String,
         enum: ['Rent', 'Sale']
     },
-    image:{
-      type: String
-    },
+    images:[
+        {
+            url:String,
+            filename:String
+        }
+    ],
     location:{
       type: String
     },

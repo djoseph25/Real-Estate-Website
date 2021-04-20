@@ -54,9 +54,14 @@
         <% listing.forEach(listing => { %>
         <div class="col-md-4">
           <div class="card-box-a card-shadow">
-            <div class="img-box-a">
-              <img src="<%= listing.image %> " alt="" class="img-b img-fluid">
-            </div>
+            <!-- <div class="img-box-a">
+              <img src="" alt="" class="img-b img-fluid">
+            </div> -->
+            <% for(let img of listing.images){ %> 
+              <div class="img-box-a">
+                  <img src="<%= img.url %> " class="img-b img-fluid" alt="...">        
+              </div>
+              <!-- <% } %> -->
             <div class="card-overlay">
               <div class="card-overlay-a-content">
                 <div class="card-header-a">

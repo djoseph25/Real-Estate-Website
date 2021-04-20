@@ -18,7 +18,7 @@ router.post('/signUp', catchAsync(async(req, res)=>{
      const {username, email, password} = req.body
     const user = new User({email, username})
     const newUser = await User.register(user, password)  
-    console.log(newUser)
+    // console.log(newUser)
     req.login(newUser, err=>{
        if(err){
            res.redirect('signUp')
@@ -40,7 +40,7 @@ router.post('/signUp', catchAsync(async(req, res)=>{
 //--//-->  🥛  LogIn A User 🧮 
 ======================================*/
 router.get('/login', catchAsync(async(req, res)=>{
-    console.log(req.body)
+    // console.log(req.body)
     res.redirect('/')
 }))
 

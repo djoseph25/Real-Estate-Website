@@ -1,3 +1,10 @@
+// DOTENV FILE
+if(process.env.NODE_ENV !== "production"){
+    require('dotenv').config()
+}
+// console.log(process.env.API_KEY)
+
+
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -47,6 +54,7 @@ app.use((req, res, next) => {
     next();
 })
 
+
 /*======================================
 //--//-->  🥛  Blog, listingRoute, 
 AuthenticationRoute 🧮 
@@ -67,6 +75,10 @@ app.get('/contact', (req, res, next) =>{
 ======================================*/
 app.get('/about', (req, res, next) =>{
     res.render('Listing/about')
+})
+
+app.get('/carousel', (req, res)=>{
+    res.render('Listing/shows')
 })
 
 app.get('/user', async(req, res)=>{

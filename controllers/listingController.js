@@ -7,6 +7,7 @@ const {listingModel, blogModel} = require('../model/listingBlogModel');
 ======================================*/
 exports.getAllListing = async (req, res, next) =>{
     const listing = await listingModel.find()
+
     const Blog = await blogModel.find()
       res.render('Listing/home', {listing, Blog})
 }
@@ -26,8 +27,10 @@ exports.createListing = catchAsync(async(req, res)=>{
 
 exports.postNewListing = catchAsync(async(req, res)=>{
     const listing = await listingModel(req.body)
+    listing.images = req.files.map(image=>({url:image.path, filename: image.filename}))
     listing.user = req.user._id
    await listing.save()
+   console.log(listing)
     req.flash('success', 'Your Listing have successful been posted!')
     // res.send('send')
     res.redirect(`/listing/${listing._id}`)
