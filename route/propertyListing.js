@@ -32,7 +32,7 @@ router.get('/listing/new', createListing)
 //   console.log(req.body, req.files)
 //   res.send('It Worked')
 // })
-router.post('/listing', isLoggedListing, upload.array('image'), postNewListing )
+router.post('/listing', upload.array('image'), postNewListing )
 
 /*======================================
 //--//-->  🥛  GET One LISTING 🧮 
@@ -42,9 +42,9 @@ router.get('/listing/:id', isLoggedIn, getOneListing)
 /*======================================
 //--//-->  🥛  Edit Listing 🧮 
 ======================================*/
-router.get('/listing/:id/edit', isLoggedIn, editListing)
+router.get('/listing/:id/edit',editListing)
 
-router.put('/listing/:id', editListingPut)
+router.put('/listing/:id',upload.array('image'), editListingPut)
 
 /*======================================
 //--//-->  🥛  Delete a Single ListingByID🧮 

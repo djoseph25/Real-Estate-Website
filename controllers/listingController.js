@@ -55,11 +55,21 @@ exports.editListing= catchAsync(async(req, res)=>{
     res.render('Listing/edit', {listing})
 })
 
-exports.editListingPut = catchAsync(async(req, res, next)=>{
-    const listingUpdate = await listingModel.findByIdAndUpdate(req.params.id, req.body)
-    listingUpdate.save()
-    console.log(listingUpdate)
-    res.redirect(`/Listing/${listingUpdate._id}`)
+// // ADD MORE IMAGE TO EXISTING FILE
+// exports.editListingPut = catchAsync(async(req, res)=>{
+//     const listing = await listingModel.findByIdAndUpdate(req.params.id,req.body)
+//     const imgs = req.files.map(image=>({url:image.path, filename: image.filename}))
+//     listing.images.push( ...imgs)
+//     await listing.save()
+//     console.log(listing)
+//     res.redirect(`/Listing/${listing._id}`)
+// })
+exports.editListingPut = catchAsync(async(req, res)=>{
+    const listing = await listingModel.findByIdAndUpdate(req.params.id,req.body)
+    listing.images = req.files.map(image=>({url:image.path, filename: image.filename}))
+    await listing.save()
+    console.log(listing)
+    res.redirect(`/Listing/${listing._id}`)
 })
 /*======================================
 //--//-->  🥛  Delete a Single ListingByID🧮 
