@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/1303154/88677602-1635ba80-d120-11ea-84d8-d263ba5fc3c0.gif" width="28px" alt="hi">
+OPEN DOOR <img src="https://user-images.githubusercontent.com/1303154/88677602-1635ba80-d120-11ea-84d8-d263ba5fc3c0.gif" width="28px" alt="hi">
 Designed and developed a mobile responsive full stack application that connects sellers with local buyers. 
 The application allows sellers to register and post their listing for sales in under one minute and start getting 
 traction in no time without paying a realtor 3%. In building this web-based application, I displayed a working knowledge
